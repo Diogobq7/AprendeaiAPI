@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar</title>
+</head>
+<body>
+<form id="formProduto">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required />
+
+    <label for="descricao">Descrição:</label>
+    <input type="text" id="descricao" name="descricao" required />
+
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" name="preco" required />
+
+    <label for="quantidadeEstoque">Quantidade em Estoque:</label>
+    <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" required />
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+<div id="mensagem"></div>
+
+<script>
+    document.getElementById("formProduto").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const produto = {
+            nome: document.getElementById("nome").value,
+            descricao: document.getElementById("descricao").value,
+            preco: parseFloat(document.getElementById("preco").value),
+            quantidadeEstoque: parseInt(document.getElementById("quantidadeEstoque").value)
+        };
+
+        fetch("/api/produtos/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(produto)
+        })
+            .then(response => response.text().then(mensagem => {
+                // Mesmo em erro, ainda acessamos a mensagem do corpo
+                if (!response.ok) {
+                    throw new Error("❌ " + mensagem);
+                }
+
+                // Sucesso
+                document.getElementById("mensagem").textContent = "✅ " + mensagem;
+                document.getElementById("formProduto").reset();
+            }))
+            .catch(error => {
+                // Mostra a mensagem de erro da API
+                document.getElementById("mensagem").textContent = error.message;
+            });
+    });
+</script>
+</body>
+</html>

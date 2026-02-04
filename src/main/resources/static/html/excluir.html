@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Produto</title>
+</head>
+<body>
+<h1>Excluir Produto</h1>
+
+<form id="formExcluirProduto">
+    <label for="idProduto">ID do Produto:</label>
+    <input type="number" id="idProduto" name="idProduto" required><br>
+
+    <button type="submit">Excluir</button>
+</form>
+
+<!-- Mensagem de sucesso ou erro -->
+<div id="mensagem" style="margin-top: 15px; font-weight: bold;"></div>
+
+<script>
+    document.getElementById("formExcluirProduto").addEventListener("submit", function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do formulário
+
+        // Obtém o ID do produto
+        const idProduto = document.getElementById("idProduto").value;
+
+        // Envia a requisição de exclusão via fetch
+        fetch(`/api/produtos/excluir/${idProduto}`, {
+            method: "DELETE"
+        })
+            .then(async response => {
+                const mensagem = await response.text();
+
+                if (!response.ok) {
+                    throw new Error("❌ " + mensagem);
+                }
+
+                document.getElementById("mensagem").textContent = "✅ " + mensagem;
+                document.getElementById("formExcluirProduto").reset(); // Limpa o formulário
+            })
+            .catch(error => {
+                document.getElementById("mensagem").textContent = error.message;
+            });
+    });
+</script>
+</body>
+</html>
