@@ -6,17 +6,15 @@ import org.example.aprendeaiapi.model.TipoUsuario;
 public class UsuarioResposeDTO {
     private String matricula;
     private String nomeCompleto;
+    private String cpf;
     private String email;
-    private String senha;
-    @JoinColumn(name = "tipo_usuario_enum")
-    private TipoUsuario tipoUsuario;
+
 
     public UsuarioResposeDTO(String cpf, String email, String matricula, String nomeCompleto, String senha, TipoUsuario tipoUsuario) {
         this.email = email;
         this.matricula = matricula;
         this.nomeCompleto = nomeCompleto;
-        this.senha = senha;
-        this.tipoUsuario = tipoUsuario;
+        this.cpf = cpf;
     }
 
     public String getEmail() {
@@ -43,19 +41,11 @@ public class UsuarioResposeDTO {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

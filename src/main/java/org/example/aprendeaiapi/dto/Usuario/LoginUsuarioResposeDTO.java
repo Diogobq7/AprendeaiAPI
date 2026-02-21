@@ -3,18 +3,20 @@ package org.example.aprendeaiapi.dto.Usuario;
 import jakarta.persistence.JoinColumn;
 import org.example.aprendeaiapi.model.TipoUsuario;
 
-public class LoginUsuarioRespose {
+public class LoginUsuarioResposeDTO {
     private long id;
     private String matricula;
     private String email;
     @JoinColumn(name = "tipo_usuario_enum")
     private TipoUsuario tipoUsuario;
+    private Boolean primeiroLogin;
 
-    public LoginUsuarioRespose(String email, long id, String matricula, TipoUsuario tipoUsuario) {
-        this.email = email;
+    public LoginUsuarioResposeDTO( long id, String matricula,String email, TipoUsuario tipoUsuario,Boolean primeiroLogin) {
         this.id = id;
         this.matricula = matricula;
+        this.email = email;
         this.tipoUsuario = tipoUsuario;
+        this.primeiroLogin = primeiroLogin;
     }
 
     public String getEmail() {
@@ -47,5 +49,13 @@ public class LoginUsuarioRespose {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public Boolean getPrimeiroLogin() {
+        return primeiroLogin;
+    }
+
+    public void setPrimeiroLogin(Boolean primeiroLogin) {
+        this.primeiroLogin = primeiroLogin;
     }
 }

@@ -1,6 +1,8 @@
 package org.example.aprendeaiapi.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 public class Usuario {
@@ -12,8 +14,26 @@ public class Usuario {
     private String cpf;
     private String email;
     private String senha;
-    @JoinColumn(name = "tipo_usuario_enum")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_usuario")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private TipoUsuario tipoUsuario;
+    private String responsavel;
+    @Column(name = "telefone_responsavel")
+    private String  telefoneResponsavel;
+
+    public Usuario(String cpf, String email, String matricula, String nomeCompleto, String senha, TipoUsuario tipoUsuario, String responsavel, String telefoneResponsavel) {
+        this.cpf = cpf;
+        this.email = email;
+        this.matricula = matricula;
+        this.nomeCompleto = nomeCompleto;
+        this.senha = senha;
+        this.tipoUsuario = tipoUsuario;
+        this.responsavel = responsavel;
+        this.telefoneResponsavel = telefoneResponsavel;
+    }
+
+    public Usuario() {}
 
     public String getCpf() {
         return cpf;
@@ -69,5 +89,21 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
+    }
+
+    public String getTelefoneResponsavel() {
+        return telefoneResponsavel;
+    }
+
+    public void setTelefoneResponsavel(String telefoneResponsavel) {
+        this.telefoneResponsavel = telefoneResponsavel;
     }
 }
