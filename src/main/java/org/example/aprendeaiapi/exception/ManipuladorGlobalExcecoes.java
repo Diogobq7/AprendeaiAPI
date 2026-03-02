@@ -58,12 +58,6 @@ public class ManipuladorGlobalExcecoes {
                 .body(e.getMessage());
     }
 
-    @ExceptionHandler(InsufficientStockException.class)
-    public ResponseEntity<String> handleInsufficientStockException(InsufficientStockException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(e.getMessage());
-    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>>
         handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
@@ -74,21 +68,4 @@ public class ManipuladorGlobalExcecoes {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
-    @ExceptionHandler(BeanValidationException.class)
-    public ResponseEntity<Map<String, String>>
-        handleBeanValidationException(BeanValidationException ex) {
-        Map<String, String> errors = new HashMap<>();
-        for (ConstraintViolation<?> violation : ex.getViolations()) {
-            String campo = violation.getPropertyPath().toString();
-            String mensagem = violation.getMessage();
-            errors.put(campo, mensagem);
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
-    }
-
-    @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<Map<String, String>> handleValidationException(ValidationException ex) {
-        Map<String, String> erros = ex.getErrors();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erros);
-    }
 }
