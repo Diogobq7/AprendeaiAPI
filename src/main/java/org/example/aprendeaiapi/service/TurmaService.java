@@ -2,6 +2,7 @@ package org.example.aprendeaiapi.service;
 
 import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
 import org.example.aprendeaiapi.dto.nota.NotaResposeDTO;
+import org.example.aprendeaiapi.dto.turma.AlunoTurmaNotaDTO;
 import org.example.aprendeaiapi.repository.TurmaRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,8 @@ public class TurmaService {
         return turmas;
     }
 
-    public List<UsuarioResposeDTO> geAlunosByProfessor(Long professorId) {
-        List<UsuarioResposeDTO> turma = turmaRepository.buscarAlunosPorProfessor(professorId);
+    public List<AlunoTurmaNotaDTO> geAlunosByProfessor(Long professorId) {
+        List<AlunoTurmaNotaDTO> turma = turmaRepository.buscarAlunosPorProfessor(professorId);
         return turma;
     }
 }

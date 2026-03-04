@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface ObservacaoRepository extends JpaRepository<Observacao, Long> {
 
-    List<Observacao> findByIdProfessorId(Long idProfessor);
-
-    List<Observacao> findByIdAluno(Long idAluno);
-
+    List<Observacao> findByProfessorId(Long idProfessor);
+    List<Observacao> findByAlunoId(Long idAluno);
 }

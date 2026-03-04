@@ -15,11 +15,11 @@ public class ObservacaoResposeDTO {
         this.id = observacao.getId();
         this.observacao = observacao.getObservacao();
         this.dataRegistro = observacao.getData_registro();
-        this.nomeProfessor = observacao.getIdProfessor().getNomeCompleto();
-        this.nomeAluno = observacao.getIdAluno().getNomeCompleto();
+        this.nomeProfessor = observacao.getProfessor().getNomeCompleto();
+        this.nomeAluno = observacao.getAluno().getNomeCompleto();
     }
 
-    public ObservacaoResposeDTO(Long nomeAluno, Long nomeProfessor, String observacao) {
+    public ObservacaoResposeDTO(String nomeAluno, String nomeProfessor, String observacao) {
         this.nomeAluno = nomeAluno;
         this.nomeProfessor = nomeProfessor;
         this.observacao = observacao;

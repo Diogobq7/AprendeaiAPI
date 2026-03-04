@@ -13,19 +13,19 @@ public class Observacao {
     private Long id;
     @JoinColumn(name = "id_aluno")
     @ManyToOne
-    private Usuario idAluno;
+    private Usuario aluno;
     @JoinColumn(name = "id_professor")
     @ManyToOne
-    private Usuario idProfessor;
+    private Usuario professor;
     private String observacao;
     private LocalDate data_registro;
 
     //construtor
 
-    public Observacao(LocalDate data_registro,  Usuario idAluno, Usuario idProfessor, String observacao) {
+    public Observacao(LocalDate data_registro,  Usuario aluno, Usuario professor, String observacao) {
         this.data_registro = data_registro;
-        this.idAluno = idAluno;
-        this.idProfessor = idProfessor;
+        this.aluno = aluno;
+        this.professor = professor;
         this.observacao = observacao;
     }
 
@@ -47,20 +47,20 @@ public class Observacao {
         return id;
     }
 
-    public Usuario getIdAluno() {
-        return idAluno;
+    public Usuario getAluno() {
+        return aluno;
     }
 
-    public void setIdAluno(Usuario idAluno) {
-        this.idAluno = idAluno;
+    public void setAluno(Usuario aluno) {
+        this.aluno = aluno;
     }
 
-    public Usuario getIdProfessor() {
-        return idProfessor;
+    public Usuario getProfessor() {
+        return professor;
     }
 
-    public void setIdProfessor(Usuario idProfessor) {
-        this.idProfessor = idProfessor;
+    public void setProfessor(Usuario professor) {
+        this.professor = professor;
     }
 
     public String getObservacao() {

@@ -55,7 +55,7 @@ public class ObservacaoService {
     public List<ObservacaoResposeDTO> getObservacaoByProfessor(Long idProfessor){
 
         List<Observacao> observacoes =
-                observacaoRepository.findByIdProfessorId(idProfessor);
+                observacaoRepository.findByProfessorId(idProfessor);
 
         return observacoes.stream()
                 .map(ObservacaoResposeDTO::new)
@@ -65,7 +65,7 @@ public class ObservacaoService {
     public List<ObservacaoResposeDTO> getObservacaoByAluno(Long idAluno){
 
         List<Observacao> observacoes =
-                observacaoRepository.findByIdAluno(idAluno);
+                observacaoRepository.findByAlunoId(idAluno);
 
         return observacoes.stream()
                 .map(ObservacaoResposeDTO::new)

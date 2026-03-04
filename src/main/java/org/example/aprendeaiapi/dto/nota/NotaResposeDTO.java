@@ -6,7 +6,6 @@ public class NotaResposeDTO {
     private Double nota;
 
    //construtor
-
     public NotaResposeDTO(String nomeAluno, String nomeDisciplina, Double nota) {
         this.nomeAluno = nomeAluno;
         this.nomeDisciplina = nomeDisciplina;
