@@ -18,4 +18,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     void updateSenha(@Param("email") String email,
                      @Param("senha") String senha);
     List<UsuarioResposeDTO> findByTipoUsuario(TipoUsuario tipoUsuario);
+
+
 }

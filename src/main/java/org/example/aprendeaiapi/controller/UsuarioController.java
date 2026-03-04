@@ -10,13 +10,11 @@ import org.example.aprendeaiapi.service.UsuarioService;
 import org.example.aprendeaiapi.validation.OnCreate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@CrossOrigin("*")
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
