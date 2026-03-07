@@ -1,6 +1,8 @@
 package org.example.aprendeaiapi.controller;
 
 import jakarta.validation.groups.Default;
+import org.example.aprendeaiapi.dto.Usuario.AlunoResposeDTO;
+import org.example.aprendeaiapi.dto.Usuario.ProfessorResposeDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioRequestDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
 import org.example.aprendeaiapi.dto.message.MessageResponseDTO;
@@ -21,9 +23,11 @@ import java.util.List;
 @CrossOrigin("*")
 public class AdminController {
     private final AdminService adminService;
+    private final UsuarioService usuarioService;
 
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, UsuarioService usuarioService) {
         this.adminService = adminService;
+        this.usuarioService = usuarioService;
     }
 
     @PostMapping("/addUsuario")
@@ -59,6 +63,18 @@ public class AdminController {
     @PostMapping("/addDisciplina")
     public ResponseEntity<MessageResponseDTO> addDisciplina(@RequestParam(name = "disciplina")String disciplina){
         MessageResponseDTO res = adminService.adicionarDisciplina(disciplina);
+        return ResponseEntity.ok(res);
+    }
+
+    @GetMapping("/getProfessor")
+    public ResponseEntity<List<ProfessorResposeDTO>> getProfessor(){
+        List<ProfessorResposeDTO> res = usuarioService.listarProfessores();
+        return ResponseEntity.ok(res);
+    }
+
+    @GetMapping("/getAlunos")
+    public ResponseEntity<List<AlunoResposeDTO>> getAlunos() {
+        List<AlunoResposeDTO> res = usuarioService.listarAlunos();
         return ResponseEntity.ok(res);
     }
 }

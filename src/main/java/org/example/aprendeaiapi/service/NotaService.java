@@ -3,6 +3,7 @@ package org.example.aprendeaiapi.service;
 import jakarta.persistence.EntityNotFoundException;
 import org.example.aprendeaiapi.dto.message.MessageResponseDTO;
 import org.example.aprendeaiapi.dto.nota.NotaRequestDTO;
+import org.example.aprendeaiapi.dto.nota.NotaResposeDTO;
 import org.example.aprendeaiapi.model.Disciplina;
 import org.example.aprendeaiapi.model.Nota;
 import org.example.aprendeaiapi.model.Usuario;
@@ -12,6 +13,7 @@ import org.example.aprendeaiapi.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,5 +62,9 @@ public class NotaService {
         return new MessageResponseDTO("Nota atualizada com sucesso");
     }
 
+    public List<NotaResposeDTO> getAlunoNota(Long idAluno) {
+        List<NotaResposeDTO> notas = notaRepository.getNotaByIdAluno(idAluno);
+        return notas;
+    }
 
 }

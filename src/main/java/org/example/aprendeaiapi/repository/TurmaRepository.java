@@ -2,7 +2,6 @@ package org.example.aprendeaiapi.repository;
 
 
 import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
-import org.example.aprendeaiapi.dto.nota.NotaResposeDTO;
 import org.example.aprendeaiapi.dto.turma.AlunoTurmaNotaDTO;
 import org.example.aprendeaiapi.model.Turma;
 import org.springframework.data.jpa.repository.JpaRepository;
