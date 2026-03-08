@@ -8,6 +8,8 @@ import org.example.aprendeaiapi.model.Usuario;
 import org.example.aprendeaiapi.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
     final UsuarioRepository usuarioRepository;
@@ -56,5 +58,13 @@ public class UsuarioService {
         return new MessageResponseDTO("Senha atualizada com sucesso!");
     }
 
+    public List<AlunoResposeDTO> listarAlunos() {
+        List<AlunoResposeDTO> alunos = usuarioRepository.findAllAluno();
+        return alunos;
+    }
 
+    public List<ProfessorResposeDTO> listarProfessores() {
+        List<ProfessorResposeDTO> professores = usuarioRepository.findAllProfessor();
+        return professores;
+    }
 }

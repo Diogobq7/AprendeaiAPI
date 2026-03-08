@@ -22,4 +22,7 @@ public interface NotaRepository extends JpaRepository<Nota, Long> {
         SELECT d.nomeDisciplina FROM Disciplina d
 """)
     Optional<Disciplina> getDisciplina(Long idDiciplina);
+
+    @Query("SELECT n FROM Nota n WHERE n.idAluno = :idAluno")
+    List<NotaResposeDTO> getNotaByIdAluno(@Param("idAluno") Long idAluno);
 }
