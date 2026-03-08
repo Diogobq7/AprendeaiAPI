@@ -9,12 +9,12 @@ public class AlunoResposeDTO {
     private String email;
     private String anoEscolar;
 
-    public AlunoResposeDTO(String anoEscolar, String cpf, String email, String matricula, String nomeCompleto) {
-        this.anoEscolar = anoEscolar;
-        this.cpf = cpf;
-        this.email = email;
+    public AlunoResposeDTO(String matricula, String nomeCompleto, String cpf, String email, String anoEscolar) {
         this.matricula = matricula;
         this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+        this.email = email;
+        this.anoEscolar = anoEscolar;
     }
 
     //get setter

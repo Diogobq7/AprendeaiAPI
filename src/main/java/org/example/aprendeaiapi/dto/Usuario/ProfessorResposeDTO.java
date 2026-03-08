@@ -8,12 +8,13 @@ public class ProfessorResposeDTO {
     private String anoEscolar;
 
     public ProfessorResposeDTO(String anoEscolar, String email, String matricula, String nomeCompleto, String nomeDisciplina) {
-        this.anoEscolar = anoEscolar;
-        this.email = email;
         this.matricula = matricula;
         this.nomeCompleto = nomeCompleto;
         this.nomeDisciplina = nomeDisciplina;
+        this.email = email;
+        this.anoEscolar = anoEscolar;
     }
+
 
     //get and Setter
 
