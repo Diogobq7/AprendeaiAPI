@@ -63,8 +63,18 @@ public class NotaService {
     }
 
     public List<NotaResposeDTO> getAlunoNota(Long idAluno) {
-        List<NotaResposeDTO> notas = notaRepository.getNotaByIdAluno(idAluno);
-        return notas;
+        List<Nota> notas = notaRepository.getNotaByIdAluno(idAluno);
+
+        return notas.stream()
+                .map(n -> new NotaResposeDTO(
+                        n.getaluno().getNomeCompleto(),
+                        n.getDisciplina().getNomeDisciplina(),
+                        n.getN1(),
+                        n.getN2(),
+                        n.getMedia(),
+                        n.getData_registro()
+                ))
+                .toList();
     }
 
 }

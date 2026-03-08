@@ -16,21 +16,21 @@ public class Nota {
     private Disciplina disciplina;
     @JoinColumn(name = "id_aluno")
     @ManyToOne
-    private Usuario idAluno;
+    private Usuario aluno;
     @JoinColumn(name = "id_professor")
     @ManyToOne
-    private Usuario idProfessor;
+    private Usuario professor;
     private Double n1;
     private Double n2;
     private Double media;
     private LocalDate data_registro;
 
     //contrustor
-    public Nota(LocalDate data_registro, Disciplina disciplina, Usuario idAluno, Usuario idProfessor, Double n1, Double n2, Double media) {
+    public Nota(LocalDate data_registro, Disciplina disciplina, Usuario aluno, Usuario professor, Double n1, Double n2, Double media) {
         this.data_registro = data_registro;
         this.disciplina = disciplina;
-        this.idAluno = idAluno;
-        this.idProfessor = idProfessor;
+        this.aluno = aluno;
+        this.professor = professor;
         this.n1 = n1;
         this.n2 = n2;
         this.media = media;
@@ -64,20 +64,20 @@ public class Nota {
         this.id = id;
     }
 
-    public Usuario getIdAluno() {
-        return idAluno;
+    public Usuario getaluno() {
+        return aluno;
     }
 
-    public void setIdAluno(Usuario idAluno) {
-        this.idAluno = idAluno;
+    public void setaluno(Usuario aluno) {
+        this.aluno = aluno;
     }
 
-    public Usuario getIdProfessor() {
-        return idProfessor;
+    public Usuario getprofessor() {
+        return professor;
     }
 
-    public void setIdProfessor(Usuario idProfessor) {
-        this.idProfessor = idProfessor;
+    public void setprofessor(Usuario professor) {
+        this.professor = professor;
     }
 
     public Double getMedia() {

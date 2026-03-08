@@ -8,18 +8,16 @@ public class NotaResposeDTO {
     private Double n1;
     private Double n2;
     private Double media;
-    private String nomeDiciplina;
     private LocalDate dataRegistro;
 
    //construtor
-    public NotaResposeDTO(String nomeAluno, String nomeDisciplina, Double n1, Double n2, Double media, LocalDate dataRegistro, String nomeDiciplina1, LocalDate dataRegistro1) {
+    public NotaResposeDTO(String nomeAluno, String nomeDisciplina, Double n1, Double n2, Double media, LocalDate dataRegistro) {
         this.nomeAluno = nomeAluno;
         this.nomeDisciplina = nomeDisciplina;
         this.n1 = n1;
         this.n2 = n2;
         this.media = media;
-        this.nomeDiciplina = nomeDiciplina1;
-        this.dataRegistro = dataRegistro1;
+        this.dataRegistro = dataRegistro;
     }
 
     //get and setter
@@ -73,10 +71,10 @@ public class NotaResposeDTO {
     }
 
     public String getNomeDiciplina() {
-        return nomeDiciplina;
+        return nomeDisciplina;
     }
 
     public void setNomeDiciplina(String nomeDiciplina) {
-        this.nomeDiciplina = nomeDiciplina;
+        this.nomeDisciplina = nomeDiciplina;
     }
 }
