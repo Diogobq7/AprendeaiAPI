@@ -8,15 +8,13 @@ import org.example.aprendeaiapi.service.NotaService;
 import org.example.aprendeaiapi.service.ObservacaoService;
 import org.example.aprendeaiapi.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/aluno")
+@CrossOrigin("*")
 public class AlunoController {
     final private ObservacaoService observacaoService;
     final private NotaService notaService;
