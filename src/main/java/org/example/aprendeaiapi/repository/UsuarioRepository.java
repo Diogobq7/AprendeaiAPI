@@ -23,12 +23,18 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
                      @Param("senha") String senha);
     List<UsuarioResposeDTO> findByTipoUsuario(TipoUsuario tipoUsuario);
 
-    @Query("""
-    SELECT u.matricula, u.nomeCompleto, u.cpf, u.email, t.anoEscolar FROM Usuario  u
-            JOIN UsuarioTurma ut ON u.id = ut.usuario.id
-            JOIN Turma t ON ut.turma.id = t.id
-            WHERE u.tipoUsuario = 'ALUNO'
-    """)
+    @Query(value = """
+        SELECT 
+            u.matricula as matricula,
+            u.nome_completo as nomeCompleto,
+            u.cpf as cpf,
+            u.email as email,
+            t.ano_escolar as anoEscolar
+        FROM usuario u
+        JOIN usuario_turma ut ON u.id = ut.id_usuario
+        JOIN turma t ON ut.id_turma = t.id
+        WHERE u.tipo_usuario = 'ALUNO'
+    """, nativeQuery = true)
     List<AlunoResposeDTO> findAllAluno();
 
     @Query("""
