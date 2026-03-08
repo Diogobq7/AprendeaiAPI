@@ -5,9 +5,11 @@ import org.example.aprendeaiapi.dto.Usuario.AlunoResposeDTO;
 import org.example.aprendeaiapi.dto.Usuario.ProfessorResposeDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioRequestDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
+import org.example.aprendeaiapi.dto.disciplina.DisciplinaResposeDTO;
 import org.example.aprendeaiapi.dto.message.MessageResponseDTO;
 import org.example.aprendeaiapi.dto.turma.TurmaRequestDTO;
 import org.example.aprendeaiapi.dto.turma.TurmaResposeDTO;
+import org.example.aprendeaiapi.model.Disciplina;
 import org.example.aprendeaiapi.model.TipoUsuario;
 import org.example.aprendeaiapi.service.AdminService;
 import org.example.aprendeaiapi.service.UsuarioService;
@@ -42,7 +44,7 @@ public class AdminController {
         return ResponseEntity.ok(buscarUsuarios);
     }
 
-    @GetMapping("/findTurma")
+    @GetMapping("/findTurmas")
     public ResponseEntity<List<TurmaResposeDTO>> findAllTurma(){
         List<TurmaResposeDTO> buscarTurmas = adminService.getTurmas();
         return ResponseEntity.ok(buscarTurmas);
@@ -54,10 +56,12 @@ public class AdminController {
         return ResponseEntity.ok(res);
     }
 
-    @GetMapping("/findTurmaPalavra")
-    public ResponseEntity<List<TurmaResposeDTO>> findTurma(@RequestParam(name = "palavra")String palavra ) {
-        List<TurmaResposeDTO> turma = adminService.getTurmas(palavra);
-        return ResponseEntity.ok(turma);
+
+
+    @GetMapping("/getDisciplina")
+    public ResponseEntity<List<DisciplinaResposeDTO>> findAllDisciplina() {
+        List<DisciplinaResposeDTO> disciplinas = adminService.getDisciplinas();
+        return ResponseEntity.ok(disciplinas);
     }
 
     @PostMapping("/addDisciplina")
@@ -77,6 +81,7 @@ public class AdminController {
         List<AlunoResposeDTO> res = usuarioService.listarAlunos();
         return ResponseEntity.ok(res);
     }
+
 }
 
 

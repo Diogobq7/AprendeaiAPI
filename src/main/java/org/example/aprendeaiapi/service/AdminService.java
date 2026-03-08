@@ -56,7 +56,7 @@ public class AdminService {
         return turmas.stream()
                 .map(turma -> new TurmaResposeDTO(
                         turma.getAnoEscolar(),
-                        turma.getDisciplina()
+                        turma.getTurma()
                 ))
                 .toList();
     }
@@ -64,22 +64,13 @@ public class AdminService {
     public MessageResponseDTO adicionarTurma(TurmaRequestDTO turmaRequestDTO) {
         Turma turma = new Turma(
                 turmaRequestDTO.getAnoEscolar(),
-                turmaRequestDTO.getDisciplina()
+                turmaRequestDTO.getTurma()
         );
         turmaRepository.save(turma);
         return new MessageResponseDTO("Turma inserida com sucesso!");
     }
 
-    public  List<TurmaResposeDTO> getTurmas(String palavra){
-        List<Turma> turmas = turmaRepository.buscarPorPalavra(palavra);
 
-        return turmas.stream()
-                .map(turma -> new TurmaResposeDTO(
-                        turma.getAnoEscolar(),
-                        turma.getDisciplina()
-                ))
-                .toList();
-    }
 
     public MessageResponseDTO adicionarDisciplina(String diciplina){
         Disciplina disciplina = new Disciplina(diciplina);

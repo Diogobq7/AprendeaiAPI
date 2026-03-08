@@ -9,17 +9,15 @@ public class Turma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @JoinColumn(name = "id_disciplina")
-    @ManyToOne
-    private Disciplina disciplina;
+   private Character turma;
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "ano_escolar")
     private AnoEscolar anoEscolar;
 
-    public Turma(AnoEscolar anoEscolar, Disciplina disciplina) {
+    public Turma(AnoEscolar anoEscolar, Character turma) {
         this.anoEscolar = anoEscolar;
-        this.disciplina = disciplina;
+        this.turma = turma;
     }
     public Turma() {}
 
@@ -33,12 +31,16 @@ public class Turma {
         this.anoEscolar = anoEscolar;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public Character getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Character turma) {
+        this.turma = turma;
     }
 
     public long getId() {

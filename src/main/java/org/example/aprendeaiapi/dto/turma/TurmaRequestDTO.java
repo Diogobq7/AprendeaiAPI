@@ -5,7 +5,7 @@ import org.example.aprendeaiapi.model.AnoEscolar;
 import org.example.aprendeaiapi.model.Disciplina;
 
 public class TurmaRequestDTO {
-    private Disciplina disciplina;
+    private Character turma;
     @JoinColumn(name = "ano_escolar_enum")
     private AnoEscolar anoEscolar;
 
@@ -19,11 +19,11 @@ public class TurmaRequestDTO {
         this.anoEscolar = anoEscolar;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Character getTurma() {
+        return turma;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setTurma(Character turma) {
+        this.turma = turma;
     }
 }

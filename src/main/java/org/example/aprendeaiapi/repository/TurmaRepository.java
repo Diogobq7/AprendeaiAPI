@@ -11,14 +11,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface TurmaRepository extends JpaRepository<Turma, Long> {
-    @Query("""
-       SELECT t FROM Turma t
-       JOIN t.disciplina d
-       WHERE 
-           CAST(t.anoEscolar AS string) LIKE %:busca%
-           OR LOWER(d.nomeDisciplina) LIKE LOWER(CONCAT('%', :busca, '%'))
-       """)
-    List<Turma> buscarPorPalavra(@Param("busca") String busca);
+
     @Query(value = """
             SELECT DISTINCT t.anoEscolar from Turma t where CAST(t.anoEscolar AS string) LIKE %:serie%
     """)
@@ -43,17 +36,22 @@ public interface TurmaRepository extends JpaRepository<Turma, Long> {
 
     @Query(value = """
     SELECT 
-        u.id::bigint,
-        u.nome_completo,
-        u.matricula,
-        t.id::bigint,
-        n.n1,
-        n.n2,
-        n.media
+        u.id::bigint as idAluno,
+        u.nome_completo as nomeCompleto,
+        u.matricula as matricula,
+        t.id::bigint as idTurma,
+        n.n1 as nota,
+        n.n2 as nota,
+        n.media as nota
     FROM professor_disciplina pd
-    JOIN turma t ON t.id_disciplina = pd.id_disciplina
-    JOIN usuario_turma ut ON ut.id_turma = t.id
-    JOIN usuario u ON u.id = ut.id_usuario
+    JOIN turma_disciplina td 
+        ON td.id_disciplina = pd.id_disciplina
+    JOIN turma t 
+        ON t.id = td.id_turma
+    JOIN usuario_turma ut 
+        ON ut.id_turma = t.id
+    JOIN usuario u 
+        ON u.id = ut.id_usuario
     LEFT JOIN notas n 
         ON n.id_aluno = u.id
         AND n.id_disciplina = pd.id_disciplina

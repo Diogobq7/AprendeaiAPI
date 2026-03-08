@@ -6,13 +6,13 @@ import org.example.aprendeaiapi.model.Disciplina;
 
 
 public class TurmaResposeDTO {
-    private Disciplina disciplina;
+    private Character turma;
     @JoinColumn(name = "ano_escolar_enum")
     private AnoEscolar anoEscolar;
 
-    public TurmaResposeDTO(AnoEscolar anoEscolar, Disciplina disciplina) {
+    public TurmaResposeDTO(AnoEscolar anoEscolar, Character turma) {
         this.anoEscolar = anoEscolar;
-        this.disciplina = disciplina;
+        this.turma = turma;
     }
 
     //get and setter
@@ -25,11 +25,11 @@ public class TurmaResposeDTO {
         this.anoEscolar = anoEscolar;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Character getTurma() {
+        return turma;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setTurma(Character turma) {
+        this.turma = turma;
     }
 }
