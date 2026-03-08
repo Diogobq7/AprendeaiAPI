@@ -38,17 +38,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     List<AlunoResposeDTO> findAllAluno();
 
     @Query(value = """
-    SELECT 
-        u.matricula,
-        u.nome_completo,
-        d.nome_disciplina,
-        u.email,
-        t.ano_escolar
-    FROM usuario u
+    SELECT u.matricula, u.nome_completo, d.nome_disciplina, u.email, t.ano_escolar FROM usuario u
     JOIN usuario_turma ut ON u.id = ut.id_usuario
     JOIN turma t ON ut.id_turma = t.id
-    JOIN disciplinas d ON t.id_disciplina = d.id
-    WHERE u.tipo_usuario = 'PROFESSOR'
+    JOIN turma_disciplina td ON td.id_turma = t.id
+    JOIN disciplinas d ON td.id_disciplina = d.id
+    WHERE tipo_usuario = 'PROFESSOR';
 """, nativeQuery = true)
     List<ProfessorResposeDTO> findAllProfessor();
 }
