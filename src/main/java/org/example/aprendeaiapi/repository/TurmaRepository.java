@@ -58,6 +58,7 @@ public interface TurmaRepository extends JpaRepository<Turma, Long> {
         ON n.id_aluno = u.id
         AND n.id_disciplina = pd.id_disciplina
     WHERE pd.id_professor = :idProfessor
+    AND u.tipo_usuario = 'ALUNO'
 """, nativeQuery = true)
     List<AlunoTurmaNotaDTO> buscarAlunosPorProfessor(
             @Param("idProfessor") Long idProfessor);
