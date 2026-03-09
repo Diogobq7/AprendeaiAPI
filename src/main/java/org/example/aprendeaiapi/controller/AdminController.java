@@ -1,10 +1,7 @@
 package org.example.aprendeaiapi.controller;
 
 import jakarta.validation.groups.Default;
-import org.example.aprendeaiapi.dto.Usuario.AlunoResposeDTO;
-import org.example.aprendeaiapi.dto.Usuario.ProfessorResposeDTO;
-import org.example.aprendeaiapi.dto.Usuario.UsuarioRequestDTO;
-import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
+import org.example.aprendeaiapi.dto.Usuario.*;
 import org.example.aprendeaiapi.dto.disciplina.DisciplinaResposeDTO;
 import org.example.aprendeaiapi.dto.message.MessageResponseDTO;
 import org.example.aprendeaiapi.dto.turma.TurmaRequestDTO;
@@ -33,7 +30,7 @@ public class AdminController {
     }
 
     @PostMapping("/addUsuario")
-    public ResponseEntity<MessageResponseDTO> addUsuario(@RequestBody @Validated({OnCreate.class, Default.class}) UsuarioRequestDTO usuarioRequestDTO) {
+    public ResponseEntity<MessageResponseDTO> addUsuario(@RequestBody @Validated({OnCreate.class, Default.class}) InsertUsuarioRequestDTO usuarioRequestDTO) {
         MessageResponseDTO res = adminService.adicionarUsuario(usuarioRequestDTO);
         return ResponseEntity.ok(res);
     }

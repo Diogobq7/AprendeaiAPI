@@ -1,5 +1,6 @@
 package org.example.aprendeaiapi.repository;
 
+import jakarta.transaction.Transactional;
 import org.example.aprendeaiapi.dto.Usuario.AlunoResposeDTO;
 import org.example.aprendeaiapi.dto.Usuario.ProfessorResposeDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
@@ -46,4 +47,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     WHERE tipo_usuario = 'PROFESSOR';
 """, nativeQuery = true)
     List<ProfessorResposeDTO> findAllProfessor();
+    @Modifying
+    @Transactional
+    @Query(value = """
+    INSERT INTO usuario_turma (id_usuario, id_turma) 
+    VALUES (:idUsuario, :idTurma)
+""", nativeQuery = true)
+    int insertUsuarioTurma(@Param("idUsuario") Long idUsuario,
+               @Param("idTurma") Long idTurma);
 }

@@ -9,8 +9,7 @@ public class UsuarioResposeDTO {
     private String cpf;
     private String email;
 
-
-    public UsuarioResposeDTO(String cpf, String email, String matricula, String nomeCompleto, String senha, TipoUsuario tipoUsuario) {
+    public UsuarioResposeDTO(String cpf, String email, String matricula, String nomeCompleto) {
         this.email = email;
         this.matricula = matricula;
         this.nomeCompleto = nomeCompleto;
