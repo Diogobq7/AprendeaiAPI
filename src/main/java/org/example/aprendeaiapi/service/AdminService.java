@@ -60,6 +60,7 @@ public class AdminService {
 
         return turmas.stream()
                 .map(turma -> new TurmaResposeDTO(
+                        turma.getId(),
                         turma.getAnoEscolar(),
                         turma.getTurma()
                 ))
