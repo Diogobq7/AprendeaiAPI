@@ -1,7 +1,9 @@
 package org.example.aprendeaiapi.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.JoinColumn;
 import jakarta.transaction.Transactional;
+import org.example.aprendeaiapi.dto.Usuario.InsertUsuarioRequestDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioRequestDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
 import org.example.aprendeaiapi.dto.disciplina.DisciplinaResposeDTO;
@@ -29,7 +31,7 @@ public class AdminService {
     }
 
     @Transactional
-    public MessageResponseDTO adicionarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
+    public MessageResponseDTO adicionarUsuario(InsertUsuarioRequestDTO usuarioRequestDTO) {
         Usuario usuario = new Usuario(
                 usuarioRequestDTO.getCpf(),
                 usuarioRequestDTO.getEmail(),
@@ -41,6 +43,9 @@ public class AdminService {
                 usuarioRequestDTO.getTelefoneResponsavel()
         );
         usuarioRepository.save(usuario);
+        turmaRepository.findById(usuarioRequestDTO.getIdTurma()).orElseThrow(() -> new EntityNotFoundException("Turma não encontrada"));
+        usuarioRepository.insertUsuarioTurma(usuario.getId(), usuarioRequestDTO.getIdTurma());
+
         return new MessageResponseDTO(usuarioRequestDTO.getTipoUsuario() + " inserido com sucesso!");
     }
 
