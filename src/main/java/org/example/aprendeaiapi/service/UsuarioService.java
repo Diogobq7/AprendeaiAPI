@@ -1,5 +1,6 @@
 package org.example.aprendeaiapi.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.example.aprendeaiapi.dto.Usuario.*;
 import org.example.aprendeaiapi.dto.message.MessageResponseDTO;
@@ -25,6 +26,9 @@ public class UsuarioService {
 
         boolean comparePassword = usuario.getSenha().equals(loginUsuarioRequestDTO.getSenha());
 
+        if ( usuario.getStatus().equals("I") ) {
+            throw new NotAuthorizeUsuario("Usuario Inativo");
+        }
         if (!comparePassword) {
             throw new NotAuthorizeUsuario(
                     "Verifique suas credenciais e tente novamente.");
@@ -66,5 +70,20 @@ public class UsuarioService {
     public List<ProfessorResposeDTO> listarProfessores() {
         List<ProfessorResposeDTO> professores = usuarioRepository.findAllProfessor();
         return professores;
+    }
+
+    public MessageResponseDTO desativarConta(Long idLong){
+        Usuario usuario = usuarioRepository.findById(idLong)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
+
+        if (usuario.getTipoUsuario().equals("ADMIN")){
+            usuarioRepository.deleteById(idLong);
+            return new MessageResponseDTO("Admin Deletado com sucesso!");
+        }
+        usuario.setStatus('I');
+
+        usuarioRepository.save(usuario);
+
+        return new MessageResponseDTO("Conta desativada com sucesso");
     }
 }

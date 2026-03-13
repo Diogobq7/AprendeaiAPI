@@ -8,13 +8,15 @@ public class AlunoResposeDTO {
     private String cpf;
     private String email;
     private String anoEscolar;
+    private Character status;
 
-    public AlunoResposeDTO(String matricula, String nomeCompleto, String cpf, String email, String anoEscolar) {
+    public AlunoResposeDTO(String matricula, String nomeCompleto, String cpf, String email, String anoEscolar, Character status) {
         this.matricula = matricula;
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
         this.email = email;
         this.anoEscolar = anoEscolar;
+        this.status = status;
     }
 
     //get setter

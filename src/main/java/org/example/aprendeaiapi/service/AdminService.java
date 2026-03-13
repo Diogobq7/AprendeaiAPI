@@ -44,7 +44,8 @@ public class AdminService {
                 "123",
                 usuarioRequestDTO.getTipoUsuario(),
                 usuarioRequestDTO.getResponsavel(),
-                usuarioRequestDTO.getTelefoneResponsavel()
+                usuarioRequestDTO.getTelefoneResponsavel(),
+                'A'
         );
         usuarioRepository.save(usuario);
         turmaRepository.findById(usuarioRequestDTO.getIdTurma()).orElseThrow(() -> new EntityNotFoundException("Turma não encontrada"));

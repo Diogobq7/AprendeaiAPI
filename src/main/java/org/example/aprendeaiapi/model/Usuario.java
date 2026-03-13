@@ -21,8 +21,9 @@ public class Usuario {
     private String responsavel;
     @Column(name = "telefone_responsavel")
     private String  telefoneResponsavel;
+    private Character status;
 
-    public Usuario(String cpf, String email, String matricula, String nomeCompleto, String senha, TipoUsuario tipoUsuario, String responsavel, String telefoneResponsavel) {
+    public Usuario(String cpf, String email, String matricula, String nomeCompleto, String senha, TipoUsuario tipoUsuario, String responsavel, String telefoneResponsavel, Character status) {
         this.cpf = cpf;
         this.email = email;
         this.matricula = matricula;
@@ -31,6 +32,7 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
         this.responsavel = responsavel;
         this.telefoneResponsavel = telefoneResponsavel;
+        this.status = status;
     }
 
     public Usuario() {}
@@ -105,5 +107,13 @@ public class Usuario {
 
     public void setTelefoneResponsavel(String telefoneResponsavel) {
         this.telefoneResponsavel = telefoneResponsavel;
+    }
+
+    public Character getStatus() {
+        return status;
+    }
+
+    public void setStatus(Character status) {
+        this.status = status;
     }
 }
