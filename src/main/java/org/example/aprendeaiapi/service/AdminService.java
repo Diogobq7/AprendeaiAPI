@@ -18,6 +18,7 @@ import org.example.aprendeaiapi.model.*;
 import org.example.aprendeaiapi.repository.DisciplinaRepository;
 import org.example.aprendeaiapi.repository.TurmaRepository;
 import org.example.aprendeaiapi.repository.UsuarioRepository;
+import org.example.aprendeaiapi.repository.UsuarioTurmaRespository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,11 +28,13 @@ public class AdminService {
     final UsuarioRepository usuarioRepository;
     final TurmaRepository turmaRepository;
     final DisciplinaRepository disciplinaRepository;
+    final UsuarioTurmaRespository usuarioTurmaRespository;
 
-    public AdminService(UsuarioRepository usuarioRepository, TurmaRepository turmaRepository, DisciplinaRepository disciplinaRepository) {
+    public AdminService(UsuarioRepository usuarioRepository, TurmaRepository turmaRepository, DisciplinaRepository disciplinaRepository, UsuarioTurmaRespository usuarioTurmaRespository) {
         this.usuarioRepository = usuarioRepository;
         this.turmaRepository = turmaRepository;
         this.disciplinaRepository = disciplinaRepository;
+        this.usuarioTurmaRespository = usuarioTurmaRespository;
     }
 
     @Transactional
@@ -121,4 +124,13 @@ public class AdminService {
         disciplinaRepository.save(disciplina);
         return new MessageResponseDTO("Disciplina atulizada com sucesso!");
     }
+
+    public MessageResponseDTO deleteTurma(Long idTurma) {
+        Turma turma = turmaRepository.findById(idTurma).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
+        usuarioTurmaRespository.deleteByIdTurma(idTurma);
+        turmaRepository.delete(turma);
+        return new MessageResponseDTO("Turma deletada com sucesso!");
+    }
+
+
 }

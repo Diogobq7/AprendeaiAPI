@@ -6,18 +6,26 @@ import org.example.aprendeaiapi.model.Disciplina;
 
 
 public class TurmaResposeDTO {
-    private long id;
+    private Long id;
     private Character turma;
-    @JoinColumn(name = "ano_escolar_enum")
     private AnoEscolar anoEscolar;
 
-    public TurmaResposeDTO(long id,AnoEscolar anoEscolar, Character turma) {
+    public TurmaResposeDTO(Long id, AnoEscolar anoEscolar, Character turma) {
         this.id = id;
         this.anoEscolar = anoEscolar;
         this.turma = turma;
     }
 
+
     //get and setter
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public AnoEscolar getAnoEscolar() {
         return anoEscolar;
