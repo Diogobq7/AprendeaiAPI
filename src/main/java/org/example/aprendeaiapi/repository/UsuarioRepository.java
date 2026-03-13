@@ -30,6 +30,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             u.nome_completo as nomeCompleto,
             u.cpf as cpf,
             u.email as email,
+            u.status as status,
             t.ano_escolar as anoEscolar
         FROM usuario u
         JOIN usuario_turma ut ON u.id = ut.id_usuario
@@ -39,7 +40,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     List<AlunoResposeDTO> findAllAluno();
 
     @Query(value = """
-    SELECT u.matricula, u.nome_completo, d.nome_disciplina, u.email, t.ano_escolar FROM usuario u
+    SELECT u.matricula, u.nome_completo, d.nome_disciplina, u.email, u.status  t.ano_escolar FROM usuario u
     JOIN usuario_turma ut ON u.id = ut.id_usuario
     JOIN turma t ON ut.id_turma = t.id
     JOIN turma_disciplina td ON td.id_turma = t.id
