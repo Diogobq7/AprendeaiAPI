@@ -16,24 +16,20 @@ public interface TurmaRepository extends JpaRepository<Turma, Long> {
             SELECT DISTINCT t.anoEscolar from Turma t where CAST(t.anoEscolar AS string) LIKE %:serie%
     """)
     List<String> buscarSerie(@Param("serie") String serie);
-    @Query("""
-       SELECT new org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO(
+    @Query(value = """
+       SELECT 
             u.cpf,
             u.email,
             u.matricula,
-            u.nomeCompleto,
-            u.senha,
-            u.tipoUsuario
-       )
-       FROM Usuario u
-       JOIN UsuarioTurma ut
-            ON ut.usuario.id = u.id
-       WHERE ut.turma.id = :idTurma
-       AND u.tipoUsuario = 'ALUNO'
-       ORDER BY u.nomeCompleto
-       """)
+            u.nome_completo
+       FROM usuario u
+       JOIN usuario_turma ut
+            ON ut.id_usuario = u.id
+       WHERE ut.id_turma = :idTurma
+       AND u.tipo_usuario = 'ALUNO'
+       ORDER BY u.nome_completo
+       """, nativeQuery = true)
     List<UsuarioResposeDTO> buscarAluno(@Param("idTurma") Long idTurma);
-
     @Query(value = """
     SELECT 
         u.id::bigint as idAluno,

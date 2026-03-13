@@ -32,7 +32,7 @@ public class AdminController {
     }
 
     @PostMapping("/addUsuario")
-    public ResponseEntity<MessageResponseDTO> addUsuario(@RequestBody @Validated({OnCreate.class, Default.class}) UsuarioRequestDTO usuarioRequestDTO) {
+    public ResponseEntity<MessageResponseDTO> addUsuario(@RequestBody @Validated({OnCreate.class, Default.class}) InsertUsuarioRequestDTO usuarioRequestDTO) {
         MessageResponseDTO res = adminService.adicionarUsuario(usuarioRequestDTO);
         return ResponseEntity.ok(res);
     }

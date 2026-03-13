@@ -9,7 +9,7 @@ public class Turma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-   private Character turma;
+    private Character turma;
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "ano_escolar")
