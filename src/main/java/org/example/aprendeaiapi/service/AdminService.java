@@ -1,15 +1,19 @@
 package org.example.aprendeaiapi.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import org.example.aprendeaiapi.dto.Usuario.UpdateUsuarioRequestDTO;
 import jakarta.persistence.JoinColumn;
 import jakarta.transaction.Transactional;
 import org.example.aprendeaiapi.dto.Usuario.InsertUsuarioRequestDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioRequestDTO;
 import org.example.aprendeaiapi.dto.Usuario.UsuarioResposeDTO;
 import org.example.aprendeaiapi.dto.disciplina.DisciplinaResposeDTO;
+import org.example.aprendeaiapi.dto.disciplina.UpdateDiciplinaRequestDTO;
 import org.example.aprendeaiapi.dto.message.MessageResponseDTO;
 import org.example.aprendeaiapi.dto.turma.TurmaRequestDTO;
 import org.example.aprendeaiapi.dto.turma.TurmaResposeDTO;
+import org.example.aprendeaiapi.dto.turma.UpdateTurmaResquestDTO;
 import org.example.aprendeaiapi.model.*;
 import org.example.aprendeaiapi.repository.DisciplinaRepository;
 import org.example.aprendeaiapi.repository.TurmaRepository;
@@ -77,7 +81,23 @@ public class AdminService {
         return new MessageResponseDTO("Turma inserida com sucesso!");
     }
 
+    public MessageResponseDTO updateTurma(UpdateTurmaResquestDTO updateTurmaResquestDTO) {
+        Turma turma = turmaRepository.findById(updateTurmaResquestDTO.getTurmaId()).orElseThrow(() -> new EntityNotFoundException("Turma não encontrado"));
+        turma.setAnoEscolar(updateTurmaResquestDTO.getAnoEscolar());
+        turma.setTurma(updateTurmaResquestDTO.getTurma());
+        turmaRepository.save(turma);
+        return new MessageResponseDTO("Turma atualizada com sucesso!");
+    }
 
+    public MessageResponseDTO updateUsuario(UpdateUsuarioRequestDTO updateUsuarioRequestDTO, String emailAtual) {
+        Usuario usuario = usuarioRepository.findByEmail(emailAtual).orElseThrow(() -> new EntityNotFoundException("Nota não encontrado"));
+        usuario.setEmail(updateUsuarioRequestDTO.getEmail());
+        usuario.setNomeCompleto(updateUsuarioRequestDTO.getNomeCompleto());
+        usuario.setResponsavel(updateUsuarioRequestDTO.getResponsavel());
+        usuario.setTelefoneResponsavel(updateUsuarioRequestDTO.getTelefoneResponsavel());
+        usuarioRepository.save(usuario);
+        return new MessageResponseDTO("Usuario atualizado com sucesso!");
+    }
 
     public MessageResponseDTO adicionarDisciplina(String diciplina){
         Disciplina disciplina = new Disciplina(diciplina);
@@ -93,5 +113,12 @@ public class AdminService {
                         disciplina.getNomeDisciplina()
                 ))
                 .toList();
+    }
+
+    public MessageResponseDTO updateDiciplina(UpdateDiciplinaRequestDTO diciplinaRequestDTO) {
+        Disciplina disciplina = disciplinaRepository.findById(diciplinaRequestDTO.getId()).orElseThrow(() -> new EntityNotFoundException("Nota não encontrado"));
+        disciplina.setNomeDisciplina(diciplinaRequestDTO.getNomeDisciplina());
+        disciplinaRepository.save(disciplina);
+        return new MessageResponseDTO("Disciplina atulizada com sucesso!");
     }
 }
