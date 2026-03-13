@@ -30,8 +30,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             u.nome_completo as nomeCompleto,
             u.cpf as cpf,
             u.email as email,
-            u.status as status,
-            t.ano_escolar as anoEscolar
+            t.ano_escolar as anoEscolar,
+            u.status as status
         FROM usuario u
         JOIN usuario_turma ut ON u.id = ut.id_usuario
         JOIN turma t ON ut.id_turma = t.id

@@ -34,7 +34,7 @@ public class UsuarioController {
         return ResponseEntity.ok(res);
     }
 
-    @GetMapping("/deleteUsuario")
+    @DeleteMapping("/deleteUsuario")
     public  ResponseEntity<MessageResponseDTO> deleteUsuario(@RequestParam(name = "idUsuario")Long idUsuario){
         MessageResponseDTO res = usuarioService.desativarConta(idUsuario);
         return ResponseEntity.ok(res);

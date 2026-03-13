@@ -97,7 +97,11 @@ public class AdminController {
        return ResponseEntity.ok(res);
     }
 
-
+    @DeleteMapping("/deleteTurma")
+    public ResponseEntity<MessageResponseDTO> deleteTurma(@RequestParam(name = "idTurma")Long idTurma){
+        MessageResponseDTO res = adminService.deleteTurma(idTurma);
+        return ResponseEntity.ok(res);
+    }
 }
 
 
