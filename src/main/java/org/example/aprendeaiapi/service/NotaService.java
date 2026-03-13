@@ -53,7 +53,7 @@ public class NotaService {
     }
 
     public MessageResponseDTO updateNota(NotaRequestDTO notaRequestDTO, Long notaId) {
-        Nota notaExistente = notaRepository.findById(notaId).orElseThrow(() -> new EntityNotFoundException("Produto não encontrado"));
+        Nota notaExistente = notaRepository.findById(notaId).orElseThrow(() -> new EntityNotFoundException("Nota não encontrado"));
         notaExistente.setN1(notaRequestDTO.getN1());
         notaExistente.setN2(notaRequestDTO.getN2());
         double media = (notaRequestDTO.getN1()+notaRequestDTO.getN2())/2;

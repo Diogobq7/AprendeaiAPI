@@ -3,9 +3,11 @@ package org.example.aprendeaiapi.controller;
 import jakarta.validation.groups.Default;
 import org.example.aprendeaiapi.dto.Usuario.*;
 import org.example.aprendeaiapi.dto.disciplina.DisciplinaResposeDTO;
+import org.example.aprendeaiapi.dto.disciplina.UpdateDiciplinaRequestDTO;
 import org.example.aprendeaiapi.dto.message.MessageResponseDTO;
 import org.example.aprendeaiapi.dto.turma.TurmaRequestDTO;
 import org.example.aprendeaiapi.dto.turma.TurmaResposeDTO;
+import org.example.aprendeaiapi.dto.turma.UpdateTurmaResquestDTO;
 import org.example.aprendeaiapi.model.Disciplina;
 import org.example.aprendeaiapi.model.TipoUsuario;
 import org.example.aprendeaiapi.service.AdminService;
@@ -53,6 +55,11 @@ public class AdminController {
         return ResponseEntity.ok(res);
     }
 
+    @PostMapping("/updateTurma")
+    public ResponseEntity<MessageResponseDTO> upadateTurma(@RequestBody @Validated({OnCreate.class, Default.class}) UpdateTurmaResquestDTO updateTurmaResquestDTO) {
+        MessageResponseDTO res = adminService.updateTurma(updateTurmaResquestDTO);
+        return ResponseEntity.ok(res);
+    }
 
 
     @GetMapping("/getDisciplina")
@@ -64,6 +71,11 @@ public class AdminController {
     @PostMapping("/addDisciplina")
     public ResponseEntity<MessageResponseDTO> addDisciplina(@RequestParam(name = "disciplina")String disciplina){
         MessageResponseDTO res = adminService.adicionarDisciplina(disciplina);
+        return ResponseEntity.ok(res);
+    }
+    @PostMapping("/updateDiciplina")
+    public ResponseEntity<MessageResponseDTO> updateDiciplina(@RequestBody @Validated({OnCreate.class, Default.class})UpdateDiciplinaRequestDTO updateDiciplinaRequestDTO){
+        MessageResponseDTO res = adminService.updateDiciplina(updateDiciplinaRequestDTO);
         return ResponseEntity.ok(res);
     }
 
@@ -78,6 +90,13 @@ public class AdminController {
         List<AlunoResposeDTO> res = usuarioService.listarAlunos();
         return ResponseEntity.ok(res);
     }
+
+    @PostMapping("/updateUsuario")
+    public ResponseEntity<MessageResponseDTO> updadeUsuario(@RequestBody @Validated({OnCreate.class, Default.class}) UpdateUsuarioRequestDTO updateUsuarioRequestDTO, @RequestParam(name = "emailAtual")String emailAtual){
+        MessageResponseDTO res = adminService.updateUsuario(updateUsuarioRequestDTO, emailAtual);
+       return ResponseEntity.ok(res);
+    }
+
 
 }
 
